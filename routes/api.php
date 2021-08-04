@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-//mans
 //cliente
 Route::post('/lista_clientes', [ClienteController::class,'listar_clientes'])->middleware('auth:api');
 Route::post('/guardar_clientes', [ClienteController::class,'guardar_clientes'])->middleware('auth:api');
