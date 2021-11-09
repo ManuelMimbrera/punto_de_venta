@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,7 +35,4 @@ class loginController extends Controller
         }
     }
 
-        public function listar(){
-            
-        }
     }

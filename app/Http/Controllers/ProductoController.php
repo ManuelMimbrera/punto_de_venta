@@ -9,7 +9,7 @@ class ProductoController extends Controller
 {
     public function listar_productos(Request $request){
 
-        return  Producto::where('name','like',$request->palabra)->get();
+        return  Producto::where('nombre','like',$request->palabra)->get();
 
         //$productos = Producto::all();
 

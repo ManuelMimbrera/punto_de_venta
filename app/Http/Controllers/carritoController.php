@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carrito;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class carritoController extends Controller
 {
@@ -15,6 +16,7 @@ class carritoController extends Controller
 
         //return $carrito;
     }
+
     public function guarda_carrito(Request $request){
         
         $carritos = new Carrito();
@@ -33,6 +35,16 @@ class carritoController extends Controller
         $car->delete();
 
         return response()->json(['code'=>'Ok'],200);
+    }
+
+    public function suma_carrito(Request $request){
+
+      $carrito = DB::table('carritos',$request->product)
+      ->select(DB::raw('SUM(carritos.costo) as total'))
+                    ->get();
+    
+    //    $carrito = Carrito::all();
+        return $carrito;
     }
 
 }

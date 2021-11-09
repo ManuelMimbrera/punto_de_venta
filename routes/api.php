@@ -5,6 +5,9 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PromocionController;
+use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\ventaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +38,8 @@ Route::post('/eliminar_productos',[productoController::class,'elimina_productos'
 
 //Login
 Route::post('/login', [loginController::class,'sesion']);
+Route::post('/lista_usuarios', [UsuariosController::class,'listar_usuarios'])->middleware('auth:api');
+Route::post('/guardar_usuarios', [UsuariosController::class,'guardar_usuario'])->middleware('auth:api');
 
 //Venta
 Route::post('/guardar_venta',[ventaController::class,'guarda_venta'])->middleware('auth:api');
@@ -46,6 +51,10 @@ Route::post('/logout',[loginController::class,'cerrar'])->middleware('auth:api')
 Route::post('/guardar_opciones',[carritoController::class,'guarda_carrito'])->middleware('auth:api');
 Route::post('/lista_opciones',[carritoController::class,'listar_carrito'])->middleware('auth:api');
 Route::post('/eliminar_opciones',[carritoController::class,'elimina_carrito'])->middleware('auth:api');
+Route::get('/sumar_costo',[carritoController::class,'suma_carrito'])->middleware('auth:api');
+
+//PROMOCIONES
+Route::post('/lista_promociones',[PromocionController::class,'listar_promocion'])->middleware('auth:api');
 
 
 Route::middleware('auth:passport')->get('/user', function (Request $request) {

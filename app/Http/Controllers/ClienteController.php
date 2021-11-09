@@ -16,7 +16,7 @@ class ClienteController extends Controller
         //return $cliente;
     }
 
-    public function guarda_clientes(Request $request)
+    public function guardar_clientes(Request $request)
     {
         if($request->id == 0){
             $clientes = new Cliente();
