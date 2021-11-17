@@ -12,8 +12,11 @@ class ventaController extends Controller
         $venta = new Venta();
 
         $venta->total = $request->total;
-        $venta->recibido = $request->recibido;
-        $venta->entregado = $request->entregado;
+        $venta->id_producto = $request->id_producto;
+        $venta->cantidad = $request->cantidad;
+        $venta->pago = $request->pago;
+        $venta->direccion = "Alguna";
+        $venta->estatus = "En proceso";
 
         $venta->save();
 

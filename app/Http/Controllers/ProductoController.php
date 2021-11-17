@@ -7,9 +7,19 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
+    public function categoria_producto(Request $request){
+
+        return Producto::join('categorias','categorias.id','=','productos.id_categoria')
+                            ->where('nomcate','=',$request->nomcate)
+                            ->select('productos.*','categorias.nomcate')
+                            ->get();
+    }
+
     public function listar_productos(Request $request){
 
-        return  Producto::where('nombre','like',$request->palabra)->get();
+        return  Producto::join('categorias','categorias.id','=','productos.id_categoria')
+                            ->where('nombre','like',$request->palabra)
+                            ->select('productos.*','categorias.nomcate')->get();
 
         //$productos = Producto::all();
 
@@ -24,10 +34,10 @@ class ProductoController extends Controller
             $producto = Producto::find($request->id);
         }
         
-
         $producto->nombre = $request->nombre;
         $producto->descripcion = $request->descripcion;
         $producto->precio = $request->precio;
+        $producto->id_categoria = $request->id_categoria;
 
         $producto->save();
 

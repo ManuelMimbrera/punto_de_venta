@@ -58,6 +58,10 @@ Route::post('/lista_promociones',[PromocionController::class,'listar_promocion']
 Route::post('/guardar_promociones',[PromocionController::class,'guardar_promocion'])->middleware('auth:api');
 Route::post('/eliminar_promociones',[PromocionController::class,'eliminar_promocion'])->middleware('auth:api');
 
+Route::post('/registro',[loginController::class,'registrar']);
+Route::post('/lista_menu',[categoriaController::class,'listar_menu'])->middleware('auth:api');
+Route::post('/categorias_productos',[productoController::class,'categoria_producto'])->middleware('auth:api');
+
 Route::middleware('auth:passport')->get('/user', function (Request $request) {
     return $request->user();
 });
