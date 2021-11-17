@@ -55,7 +55,8 @@ Route::get('/sumar_costo',[carritoController::class,'suma_carrito'])->middleware
 
 //PROMOCIONES
 Route::post('/lista_promociones',[PromocionController::class,'listar_promocion'])->middleware('auth:api');
-
+Route::post('/guardar_promociones',[PromocionController::class,'guardar_promocion'])->middleware('auth:api');
+Route::post('/eliminar_promociones',[PromocionController::class,'eliminar_promocion'])->middleware('auth:api');
 
 Route::middleware('auth:passport')->get('/user', function (Request $request) {
     return $request->user();
