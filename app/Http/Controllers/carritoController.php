@@ -10,20 +10,22 @@ class carritoController extends Controller
 {
     public function listar_carrito(Request $request){
 
-        return Carrito::where('producto','like',$request->product)->get();
-
+        return Carrito::join('productos','productos.id','=','carritos.id_producto')
+                            ->where('productos.nombre','like',$request->product)
+                            ->select('productos.*','carritos.*')
+                            ->get();
         //$carrito = Carrito::all();
 
         //return $carrito;
     }
 
+
     public function guarda_carrito(Request $request){
         
         $carritos = new Carrito();
         
-        $carritos->producto = $request->producto;
-        $carritos->descri = $request->descri;
-        $carritos->costo = $request->costo;
+        $carritos->id_producto = $request->id_producto;
+        $carritos->cantidad = $request->cantidad;
 
         $carritos->save();
 
